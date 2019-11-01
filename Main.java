@@ -1,0 +1,30 @@
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] orginal = {1,2,3,4};
+        int[] nums = {2, 3, -4, 5}; // -60, -40, 30, -24
+        int[] caserzero = {0, 0};
+        System.out.println(Arrays.toString(arrayexceptself((nums))));
+        System.out.println(Arrays.toString(arrayexceptself((caserzero))));
+        System.out.println(Arrays.toString(arrayexceptself((orginal))));
+    }
+
+    public static int[] arrayexceptself(int[] nums) {
+                int n = nums.length;
+                int[] output = new int[n];
+                output[0] = 1;
+
+                for (int i = 1; i < nums.length; i++) {
+                    output[i] = output[i-1] * nums[i-1];
+                }
+                int r = 1;
+
+                for (int i = n-1; i >= 0; i--) {
+                    output[i] = output[i] * r;
+                    r = r * nums[i];
+                }
+                return output;
+            }
+        }
